@@ -197,8 +197,8 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16 sm:h-20">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg" style={{ background: "linear-gradient(135deg, #FF6B2B, #FF8C55)" }}>
-                <Icon name="MapPin" size={20} className="text-white" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
+                <img src="https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/15d689f5-f0a9-4203-b93a-6c7898f2b1d7.png" alt="Моя Кубань" className="w-full h-full object-cover" />
               </div>
               <div>
                 <div className={`font-bold text-lg leading-tight ${isScrolled ? "text-gray-900" : "text-white"}`}>
