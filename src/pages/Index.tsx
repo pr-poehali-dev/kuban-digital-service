@@ -42,6 +42,55 @@ const guideSlides = [
     color: "#0369A1",
     num: "05",
   },
+  {
+    title: "Запись в МФЦ или в ОИВ",
+    desc: "Запись на личный приём в МФЦ или орган исполнительной власти",
+    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/e5365b36-e817-4fec-89b4-195f1df46c0a.jpg",
+    color: "#6D28D9",
+    num: "06",
+  },
+  {
+    title: "Уведомления",
+    desc: "Сообщения о новых событиях, статусах заявок и важных обновлениях в приложении",
+    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/bd229349-90bc-4687-89e3-b017f00d188d.jpg",
+    color: "#EA580C",
+    num: "07",
+  },
+  {
+    title: "Платежи",
+    desc: "Отслеживайте и оплачивайте задолженности прямо в приложении",
+    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/3005b980-d6a8-4b81-9d2e-f65f355f0774.jpg",
+    color: "#2563EB",
+    num: "08",
+  },
+  {
+    title: "Новости",
+    desc: "Просматривайте актуальные новости Краснодарского края",
+    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/6c84dd82-c299-40a0-844d-934814fe4e09.jpg",
+    color: "#16A34A",
+    num: "09",
+  },
+  {
+    title: "Вопрос-ответ",
+    desc: "Собрали ответы на вопросы по использованию мобильного приложения",
+    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/fffaa2e9-48e9-43d8-bf10-42b4474efb41.jpg",
+    color: "#D97706",
+    num: "10",
+  },
+  {
+    title: "Список укрытий",
+    desc: "Найдите укрытия по нужным параметрам с возможностью офлайн-просмотра",
+    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/860a23cb-224a-4168-878f-802dbbfcd42d.jpg",
+    color: "#DC2626",
+    num: "11",
+  },
+  {
+    title: "Офлайн-карта",
+    desc: "Интерактивная карта с возможностью отображения укрытий и офлайн-режимом",
+    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/860a23cb-224a-4168-878f-802dbbfcd42d.jpg",
+    color: "#0891B2",
+    num: "12",
+  },
 ];
 
 const appFunctions = [
@@ -107,7 +156,7 @@ export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: "", surname: "", phone: "", email: "", comment: "",
+    name: "", surname: "", phone: "", email: "", topic: "", comment: "",
   });
 
   useEffect(() => {
@@ -276,14 +325,7 @@ export default function Index() {
                 </a>
               </div>
 
-              <div className="flex gap-8 mt-12">
-                {[{ num: "200+", label: "Услуг" }, { num: "5,7M", label: "Жителей Кубани" }, { num: "24/7", label: "Работает" }].map((stat) => (
-                  <div key={stat.label}>
-                    <div className="text-2xl font-black text-white">{stat.num}</div>
-                    <div className="text-blue-200 text-sm">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
+
             </div>
 
             <div className="hidden lg:flex justify-center">
@@ -363,9 +405,10 @@ export default function Index() {
             <p className="text-gray-500 text-lg">Наведите на шаг, чтобы увидеть подробности</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Steps list */}
-            <div className="space-y-3">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Steps list — scrollable */}
+            <div>
+              <div className="space-y-2 max-h-[560px] overflow-y-auto pr-1" style={{ scrollbarWidth: "thin", scrollbarColor: "#E2E8F0 transparent" }}>
               {guideSlides.map((slide, i) => {
                 const isActive = activeSlide === i;
                 return (
@@ -374,17 +417,17 @@ export default function Index() {
                     onMouseEnter={() => setHoveredGuide(i)}
                     onMouseLeave={() => setHoveredGuide(null)}
                     onClick={() => setActiveGuide(i)}
-                    className="cursor-pointer group relative rounded-2xl p-5 transition-all duration-300 border"
+                    className="cursor-pointer group relative rounded-2xl px-4 py-3.5 transition-all duration-300 border"
                     style={{
                       background: isActive ? slide.color : "white",
                       borderColor: isActive ? slide.color : "#F3F4F6",
                       boxShadow: isActive ? `0 8px 30px ${slide.color}40` : "0 1px 3px rgba(0,0,0,0.05)",
-                      transform: isActive ? "scale(1.02)" : "scale(1)",
+                      transform: isActive ? "scale(1.01)" : "scale(1)",
                     }}
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                       <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-black text-sm transition-all duration-300"
+                        className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 font-black text-xs transition-all duration-300"
                         style={{
                           background: isActive ? "rgba(255,255,255,0.2)" : slide.color + "18",
                           color: isActive ? "white" : slide.color,
@@ -393,14 +436,14 @@ export default function Index() {
                         {slide.num}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className={`font-bold text-base leading-snug transition-colors duration-300 ${isActive ? "text-white" : "text-gray-900"}`}>
+                        <div className={`font-bold text-sm leading-snug transition-colors duration-300 ${isActive ? "text-white" : "text-gray-900"}`}>
                           {slide.title}
                         </div>
                         <div
-                          className="text-sm mt-1 leading-relaxed overflow-hidden transition-all duration-300"
+                          className="text-xs mt-1 leading-relaxed overflow-hidden transition-all duration-300"
                           style={{
                             color: isActive ? "rgba(255,255,255,0.85)" : "#6B7280",
-                            maxHeight: isActive ? "80px" : "0px",
+                            maxHeight: isActive ? "60px" : "0px",
                             opacity: isActive ? 1 : 0,
                           }}
                         >
@@ -409,7 +452,7 @@ export default function Index() {
                       </div>
                       <Icon
                         name="ChevronRight"
-                        size={18}
+                        size={16}
                         style={{ color: isActive ? "rgba(255,255,255,0.7)" : "#D1D5DB" }}
                         className="shrink-0 transition-transform duration-300 group-hover:translate-x-1"
                       />
@@ -417,16 +460,17 @@ export default function Index() {
                   </div>
                 );
               })}
+              </div>
 
-              <div className="flex gap-2 pt-2 justify-center">
+              <div className="flex gap-1.5 pt-4 justify-center flex-wrap">
                 {guideSlides.map((slide, i) => (
                   <button
                     key={i}
                     onClick={() => setActiveGuide(i)}
                     className="rounded-full transition-all duration-300"
                     style={{
-                      width: activeSlide === i ? 24 : 8,
-                      height: 8,
+                      width: activeSlide === i ? 20 : 7,
+                      height: 7,
                       backgroundColor: activeSlide === i ? slide.color : "#E2E8F0",
                     }}
                   />
@@ -561,6 +605,16 @@ export default function Index() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="example@mail.ru"
+                    className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="text-gray-400 text-sm block mb-1.5">Тема</label>
+                  <input
+                    type="text"
+                    value={formData.topic}
+                    onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+                    placeholder="Тема обращения"
                     className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
                   />
                 </div>
