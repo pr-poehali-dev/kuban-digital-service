@@ -686,7 +686,7 @@ export default function Index() {
                   </div>
                   <div>
                     <span className="text-sm block">+7 (800) 222-69-42</span>
-                    <span className="text-xs text-green-400">Бесплатно по России</span>
+                    <span className="text-xs text-green-400"></span>
                   </div>
                 </a>
               </div>
