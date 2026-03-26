@@ -328,16 +328,12 @@ export default function Index() {
 
             </div>
 
-            <div className="hidden lg:flex justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 rounded-[2.5rem] blur-2xl scale-110 animate-pulse" style={{ background: "rgba(79,131,232,0.3)" }} />
-                <div className="relative w-72 h-[520px] bg-gray-900 rounded-[2.5rem] p-3 shadow-2xl border border-white/20">
-                  <div className="w-full h-full rounded-[2rem] overflow-hidden bg-white">
-                    <img src={PHONE_IMG} alt="Моя Кубань приложение" className="w-full h-full object-cover" />
-                  </div>
-                  <div className="absolute top-5 left-1/2 -translate-x-1/2 w-24 h-6 bg-gray-900 rounded-full" />
-                </div>
-              </div>
+            <div className="hidden lg:flex justify-center items-center">
+              <img
+                src="https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/7e1e9360-efc3-491f-b57c-47a9f60f1a12.png"
+                alt="Моя Кубань приложение"
+                className="h-[580px] w-auto object-contain drop-shadow-2xl"
+              />
             </div>
           </div>
         </div>
