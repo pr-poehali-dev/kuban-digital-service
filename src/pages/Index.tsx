@@ -548,10 +548,10 @@ export default function Index() {
                     <div className="font-bold">App Store</div>
                   </div>
                 </a>
-                <a href={RUSTORE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 border border-white/30 text-white font-bold px-7 py-4 rounded-2xl hover:scale-105 transition-all" style={{ background: "rgba(255,255,255,0.15)" }}>
+                <a href={RUSTORE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white text-gray-900 font-bold px-7 py-4 rounded-2xl hover:scale-105 transition-transform shadow-xl">
                   <Icon name="Smartphone" size={22} />
                   <div className="text-left">
-                    <div className="text-xs text-blue-200">Загрузить в</div>
+                    <div className="text-xs text-gray-500">Загрузить в</div>
                     <div className="font-bold">RuStore</div>
                   </div>
                 </a>
