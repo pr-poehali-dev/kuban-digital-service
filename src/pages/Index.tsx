@@ -159,6 +159,7 @@ export default function Index() {
     name: "", surname: "", phone: "", email: "", topic: "", comment: "",
   });
   const [formErrors, setFormErrors] = useState<Record<string, boolean>>({});
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -180,7 +181,7 @@ export default function Index() {
     setMobileMenuOpen(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errors: Record<string, boolean> = {};
     (["name", "surname", "phone", "email", "topic", "comment"] as const).forEach((field) => {
@@ -188,11 +189,19 @@ export default function Index() {
     });
     setFormErrors(errors);
     if (Object.keys(errors).length > 0) return;
-    const subject = encodeURIComponent(`Обращение: ${formData.topic}`);
-    const body = encodeURIComponent(
-      `Имя: ${formData.name}\nФамилия: ${formData.surname}\nТелефон: ${formData.phone}\nEmail: ${formData.email}\nТема: ${formData.topic}\n\nКомментарий:\n${formData.comment}`
-    );
-    window.location.href = `mailto:my.kuban@message.krasnodar.ru?subject=${subject}&body=${body}`;
+    setFormStatus("sending");
+    try {
+      const res = await fetch("https://functions.poehali.dev/5df4afeb-d50f-45fd-b503-4c9e92837d89", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error();
+      setFormStatus("sent");
+      setFormData({ name: "", surname: "", phone: "", email: "", topic: "", comment: "" });
+    } catch {
+      setFormStatus("error");
+    }
   };
 
   const activeSlide = hoveredGuide !== null ? hoveredGuide : activeGuide;
@@ -643,11 +652,18 @@ export default function Index() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl"
+                  disabled={formStatus === "sending" || formStatus === "sent"}
+                  className="w-full py-4 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                   style={{ background: "linear-gradient(135deg, #1A56DB, #0EA5E9)" }}
                 >
-                  Отправить
+                  {formStatus === "sending" ? "Отправляем..." : formStatus === "sent" ? "Отправлено!" : "Отправить"}
                 </button>
+                {formStatus === "sent" && (
+                  <p className="text-green-400 text-sm font-medium text-center">Ваше обращение успешно отправлено. Мы свяжемся с вами в ближайшее время.</p>
+                )}
+                {formStatus === "error" && (
+                  <p className="text-red-400 text-sm font-medium text-center">Не удалось отправить. Попробуйте ещё раз или напишите нам на почту напрямую.</p>
+                )}
                 <p className="text-gray-500 text-xs leading-relaxed">
                   Нажимая кнопку «Отправить», я даю своё согласие на обработку персональных данных в соответствии с{" "}
                   <a href="#" className="text-blue-400 hover:underline">Федеральным законом № 152-ФЗ</a>
