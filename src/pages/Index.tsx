@@ -215,7 +215,7 @@ export default function Index() {
                 <div className={`font-bold text-lg leading-tight ${isScrolled ? "text-gray-900" : "text-white"}`}>
                   Моя Кубань
                 </div>
-                <div className={`text-xs leading-tight hidden sm:block ${isScrolled ? "text-gray-500" : "text-blue-100"}`}>
+                <div className={`text-xs leading-tight hidden sm:block ${isScrolled ? "text-gray-500" : "text-purple-100"}`}>
                   Единый цифровой сервис
                 </div>
               </div>
@@ -257,7 +257,7 @@ export default function Index() {
                 rel="noopener noreferrer"
                 className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all hover:scale-105 ${
                   isScrolled
-                    ? "bg-blue-600 text-white"
+                    ? "bg-purple-700 text-white"
                     : "bg-white/15 text-white backdrop-blur-sm border border-white/20"
                 }`}
               >
@@ -280,7 +280,7 @@ export default function Index() {
                 <button
                   key={item.label}
                   onClick={() => scrollTo(item.target)}
-                  className="block w-full text-left px-4 py-3 text-gray-700 font-medium hover:bg-blue-50 rounded-xl transition-colors"
+                  className="block w-full text-left px-4 py-3 text-gray-700 font-medium hover:bg-purple-50 rounded-xl transition-colors"
                 >
                   {item.label}
                 </button>
@@ -289,7 +289,7 @@ export default function Index() {
                 <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-gray-900 text-white py-2.5 rounded-xl text-sm font-semibold">
                   <Icon name="Apple" size={16} /> App Store
                 </a>
-                <a href={RUSTORE_URL} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white py-2.5 rounded-xl text-sm font-semibold">
+                <a href={RUSTORE_URL} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-purple-700 text-white py-2.5 rounded-xl text-sm font-semibold">
                   <Icon name="Smartphone" size={16} /> RuStore
                 </a>
               </div>
@@ -299,8 +299,8 @@ export default function Index() {
       </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden" style={{ background: "linear-gradient(135deg, #0B1E5B 0%, #1A56DB 45%, #0EA5E9 100%)" }}>
-        <div className="absolute top-1/4 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(79,131,232,0.2)" }} />
+      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden" style={{ background: "linear-gradient(135deg, #1a003d 0%, #5B21B6 45%, #7C3AED 100%)" }}>
+        <div className="absolute top-1/4 right-0 w-96 h-96 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(124,58,237,0.2)" }} />
         <div className="absolute bottom-0 left-1/4 w-80 h-80 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(255,107,43,0.15)" }} />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
@@ -312,11 +312,11 @@ export default function Index() {
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
                 Моя<br />
-                <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(90deg, #FF6B2B, #FFB347)" }}>
+                <span className="text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(90deg, #C084FC, #E879F9)" }}>
                   Кубань
                 </span>
               </h1>
-              <p className="text-blue-100 text-lg sm:text-xl leading-relaxed mb-8 max-w-lg">
+              <p className="text-purple-100 text-lg sm:text-xl leading-relaxed mb-8 max-w-lg">
                 Единый цифровой сервис для жителей Кубани. Госуслуги, безопасность, новости и уведомления — всё в одном приложении.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -360,7 +360,7 @@ export default function Index() {
       <section id="app-functions" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16 reveal">
-            <span className="inline-block bg-blue-50 text-blue-600 text-sm font-semibold px-4 py-2 rounded-full mb-4">
+            <span className="inline-block bg-purple-50 text-purple-700 text-sm font-semibold px-4 py-2 rounded-full mb-4">
               Что умеет приложение
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4">
@@ -531,13 +531,13 @@ export default function Index() {
       {/* CTA Banner */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="reveal rounded-3xl p-10 sm:p-14 text-center relative overflow-hidden" style={{ background: "linear-gradient(135deg, #0B1E5B 0%, #1A56DB 50%, #0EA5E9 100%)" }}>
+          <div className="reveal rounded-3xl p-10 sm:p-14 text-center relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1a003d 0%, #5B21B6 50%, #7C3AED 100%)" }}>
             <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl" style={{ background: "rgba(255,255,255,0.05)" }} />
             <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full blur-3xl" style={{ background: "rgba(255,107,43,0.1)" }} />
             <div className="relative z-10">
               <div className="text-5xl mb-4">🌟</div>
               <h2 className="text-white text-3xl sm:text-4xl font-black mb-4">Скачайте «Моя Кубань» сегодня</h2>
-              <p className="text-blue-100 text-lg mb-8 max-w-xl mx-auto">
+              <p className="text-purple-100 text-lg mb-8 max-w-xl mx-auto">
                 Присоединяйтесь к жителям Краснодарского края, которые уже оценили удобство цифровых госуслуг
               </p>
               <div className="flex justify-center gap-4 flex-wrap">
@@ -566,7 +566,7 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-16 mb-16">
             <div>
-              <span className="inline-block text-sm font-semibold px-4 py-2 rounded-full mb-4" style={{ background: "rgba(255,107,43,0.2)", color: "#FB923C" }}>
+              <span className="inline-block text-sm font-semibold px-4 py-2 rounded-full mb-4" style={{ background: "rgba(124,58,237,0.2)", color: "#A78BFA" }}>
                 Обратная связь
               </span>
               <h2 className="text-2xl sm:text-3xl font-black mb-2">Ответы на ваши вопросы</h2>
@@ -581,7 +581,7 @@ export default function Index() {
                       value={formData.name}
                       onChange={(e) => { setFormData({ ...formData, name: e.target.value }); setFormErrors({ ...formErrors, name: false }); }}
                       placeholder="Иван"
-                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.name ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
+                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.name ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-purple-500"}`}
                     />
                     {formErrors.name && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                   </div>
@@ -592,7 +592,7 @@ export default function Index() {
                       value={formData.surname}
                       onChange={(e) => { setFormData({ ...formData, surname: e.target.value }); setFormErrors({ ...formErrors, surname: false }); }}
                       placeholder="Иванов"
-                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.surname ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
+                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.surname ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-purple-500"}`}
                     />
                     {formErrors.surname && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                   </div>
@@ -604,7 +604,7 @@ export default function Index() {
                     value={formData.phone}
                     onChange={(e) => { setFormData({ ...formData, phone: e.target.value }); setFormErrors({ ...formErrors, phone: false }); }}
                     placeholder="+7 (___) ___-__-__"
-                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.phone ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
+                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.phone ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-purple-500"}`}
                   />
                   {formErrors.phone && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                 </div>
@@ -615,7 +615,7 @@ export default function Index() {
                     value={formData.email}
                     onChange={(e) => { setFormData({ ...formData, email: e.target.value }); setFormErrors({ ...formErrors, email: false }); }}
                     placeholder="example@mail.ru"
-                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.email ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
+                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.email ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-purple-500"}`}
                   />
                   {formErrors.email && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                 </div>
@@ -626,7 +626,7 @@ export default function Index() {
                     value={formData.topic}
                     onChange={(e) => { setFormData({ ...formData, topic: e.target.value }); setFormErrors({ ...formErrors, topic: false }); }}
                     placeholder="Тема обращения"
-                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.topic ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
+                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.topic ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-purple-500"}`}
                   />
                   {formErrors.topic && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                 </div>
@@ -637,20 +637,20 @@ export default function Index() {
                     onChange={(e) => { setFormData({ ...formData, comment: e.target.value }); setFormErrors({ ...formErrors, comment: false }); }}
                     placeholder="Ваш вопрос или предложение..."
                     rows={4}
-                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm resize-none ${formErrors.comment ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
+                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm resize-none ${formErrors.comment ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-purple-500"}`}
                   />
                   {formErrors.comment && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                 </div>
                 <button
                   type="submit"
                   className="w-full py-4 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl"
-                  style={{ background: "linear-gradient(135deg, #1A56DB, #0EA5E9)" }}
+                  style={{ background: "linear-gradient(135deg, #5B21B6, #7C3AED)" }}
                 >
                   Отправить
                 </button>
                 <p className="text-gray-500 text-xs leading-relaxed">
                   Нажимая кнопку «Отправить», я даю своё согласие на обработку персональных данных в соответствии с{" "}
-                  <a href="#" className="text-blue-400 hover:underline">Федеральным законом № 152-ФЗ</a>
+                  <a href="#" className="text-purple-400 hover:underline">Федеральным законом № 152-ФЗ</a>
                   {" "}«О персональных данных».
                 </p>
               </form>
@@ -675,13 +675,13 @@ export default function Index() {
               <div className="space-y-4">
                 <h3 className="text-gray-300 font-semibold text-sm uppercase tracking-wider">Контакты</h3>
                 <a href="mailto:my.kuban@message.krasnodar.ru" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
-                  <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                  <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center group-hover:bg-purple-700 transition-colors">
                     <Icon name="Mail" size={16} />
                   </div>
                   <span className="text-sm">my.kuban@message.krasnodar.ru</span>
                 </a>
                 <a href="tel:+78002226942" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
-                  <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                  <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center group-hover:bg-purple-700 transition-colors">
                     <Icon name="Phone" size={16} />
                   </div>
                   <div>
@@ -700,7 +700,7 @@ export default function Index() {
                   </div>
                 </a>
                 <a href={RUSTORE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 transition-colors px-4 py-3 rounded-xl">
-                  <Icon name="Smartphone" size={18} className="text-blue-400" />
+                  <Icon name="Smartphone" size={18} className="text-purple-400" />
                   <div>
                     <div className="text-gray-400 text-xs">Доступно в</div>
                     <div className="text-white text-sm font-semibold">RuStore</div>
