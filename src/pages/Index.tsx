@@ -642,8 +642,8 @@ export default function Index() {
             <div className="flex flex-col gap-8">
               <div>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center" style={{ background: "linear-gradient(135deg, #FF6B2B, #FF8C55)" }}>
-                    <Icon name="MapPin" size={22} className="text-white" />
+                  <div className="w-12 h-12 rounded-2xl overflow-hidden flex items-center justify-center">
+                    <img src="https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/15d689f5-f0a9-4203-b93a-6c7898f2b1d7.png" alt="Моя Кубань" className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <div className="font-bold text-xl">Моя Кубань</div>
