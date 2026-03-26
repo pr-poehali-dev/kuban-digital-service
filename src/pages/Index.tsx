@@ -491,8 +491,8 @@ export default function Index() {
                       key={activeSlide}
                       src={guideSlides[activeSlide].img}
                       alt={guideSlides[activeSlide].title}
-                      className="w-full h-full object-cover"
-                      style={{ animation: "fadeInScale 0.35s ease" }}
+                      className="w-full h-full object-cover object-top"
+                      style={{ animation: "fadeInScale 0.35s ease", transform: "scale(1.18)", transformOrigin: "top center" }}
                     />
                     {/* Overlay on hover */}
                     {hoveredGuide !== null && (
