@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 
-const PHONE_IMG = "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/files/f49ceab6-9f98-4b41-8c14-e7999b64a7ee.jpg";
+const PHONE_IMG = "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/4a7c0af3-3355-4be7-ba4d-7916ff97fb4a.png";
 
 const APP_STORE_URL = "https://apps.apple.com/ru/app/моя-кубань/id6756656561";
 const RUSTORE_URL = "https://www.rustore.ru/catalog/app/ru.dk.mykuban";
