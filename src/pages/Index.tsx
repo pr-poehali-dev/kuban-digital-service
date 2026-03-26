@@ -158,6 +158,7 @@ export default function Index() {
   const [formData, setFormData] = useState({
     name: "", surname: "", phone: "", email: "", topic: "", comment: "",
   });
+  const [formErrors, setFormErrors] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -181,7 +182,17 @@ export default function Index() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Ваше сообщение отправлено! Мы свяжемся с вами в ближайшее время.");
+    const errors: Record<string, boolean> = {};
+    (["name", "surname", "phone", "email", "topic", "comment"] as const).forEach((field) => {
+      if (!formData[field].trim()) errors[field] = true;
+    });
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) return;
+    const subject = encodeURIComponent(`Обращение: ${formData.topic}`);
+    const body = encodeURIComponent(
+      `Имя: ${formData.name}\nФамилия: ${formData.surname}\nТелефон: ${formData.phone}\nEmail: ${formData.email}\nТема: ${formData.topic}\n\nКомментарий:\n${formData.comment}`
+    );
+    window.location.href = `mailto:my.kuban@message.krasnodar.ru?subject=${subject}&body=${body}`;
   };
 
   const activeSlide = hoveredGuide !== null ? hoveredGuide : activeGuide;
@@ -568,20 +579,22 @@ export default function Index() {
                     <input
                       type="text"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) => { setFormData({ ...formData, name: e.target.value }); setFormErrors({ ...formErrors, name: false }); }}
                       placeholder="Иван"
-                      className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.name ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
                     />
+                    {formErrors.name && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                   </div>
                   <div>
                     <label className="text-gray-400 text-sm block mb-1.5">Фамилия</label>
                     <input
                       type="text"
                       value={formData.surname}
-                      onChange={(e) => setFormData({ ...formData, surname: e.target.value })}
+                      onChange={(e) => { setFormData({ ...formData, surname: e.target.value }); setFormErrors({ ...formErrors, surname: false }); }}
                       placeholder="Иванов"
-                      className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                      className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.surname ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
                     />
+                    {formErrors.surname && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                   </div>
                 </div>
                 <div>
@@ -589,40 +602,44 @@ export default function Index() {
                   <input
                     type="tel"
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) => { setFormData({ ...formData, phone: e.target.value }); setFormErrors({ ...formErrors, phone: false }); }}
                     placeholder="+7 (___) ___-__-__"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.phone ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
                   />
+                  {formErrors.phone && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                 </div>
                 <div>
                   <label className="text-gray-400 text-sm block mb-1.5">Email</label>
                   <input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    onChange={(e) => { setFormData({ ...formData, email: e.target.value }); setFormErrors({ ...formErrors, email: false }); }}
                     placeholder="example@mail.ru"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.email ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
                   />
+                  {formErrors.email && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                 </div>
                 <div>
                   <label className="text-gray-400 text-sm block mb-1.5">Тема</label>
                   <input
                     type="text"
                     value={formData.topic}
-                    onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+                    onChange={(e) => { setFormData({ ...formData, topic: e.target.value }); setFormErrors({ ...formErrors, topic: false }); }}
                     placeholder="Тема обращения"
-                    className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm ${formErrors.topic ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
                   />
+                  {formErrors.topic && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                 </div>
                 <div>
                   <label className="text-gray-400 text-sm block mb-1.5">Комментарий</label>
                   <textarea
                     value={formData.comment}
-                    onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
+                    onChange={(e) => { setFormData({ ...formData, comment: e.target.value }); setFormErrors({ ...formErrors, comment: false }); }}
                     placeholder="Ваш вопрос или предложение..."
                     rows={4}
-                    className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors text-sm resize-none"
+                    className={`w-full bg-gray-800 border rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none transition-colors text-sm resize-none ${formErrors.comment ? "border-red-500 focus:border-red-500" : "border-gray-700 focus:border-blue-500"}`}
                   />
+                  {formErrors.comment && <p className="text-red-500 text-xs mt-1">Заполните поле</p>}
                 </div>
                 <button
                   type="submit"
