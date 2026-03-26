@@ -80,14 +80,14 @@ const guideSlides = [
   {
     title: "Список укрытий",
     desc: "Найдите укрытия по нужным параметрам с возможностью офлайн-просмотра",
-    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/860a23cb-224a-4168-878f-802dbbfcd42d.jpg",
+    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/8908c628-94f6-4caa-b016-629f557e6117.jpg",
     color: "#DC2626",
     num: "11",
   },
   {
     title: "Офлайн-карта",
     desc: "Интерактивная карта с возможностью отображения укрытий и офлайн-режимом",
-    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/860a23cb-224a-4168-878f-802dbbfcd42d.jpg",
+    img: "https://cdn.poehali.dev/projects/712a0243-8863-497c-95a8-7b9d7df454f2/bucket/33c70125-558d-413e-b382-98ac779558ee.jpg",
     color: "#0891B2",
     num: "12",
   },
