@@ -159,7 +159,6 @@ export default function Index() {
     name: "", surname: "", phone: "", email: "", topic: "", comment: "",
   });
   const [formErrors, setFormErrors] = useState<Record<string, boolean>>({});
-  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -181,7 +180,7 @@ export default function Index() {
     setMobileMenuOpen(false);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const errors: Record<string, boolean> = {};
     (["name", "surname", "phone", "email", "topic", "comment"] as const).forEach((field) => {
@@ -189,24 +188,11 @@ export default function Index() {
     });
     setFormErrors(errors);
     if (Object.keys(errors).length > 0) return;
-
-    setFormStatus("sending");
-    try {
-      const res = await fetch("https://functions.poehali.dev/5cfba08d-6822-4f02-8ec2-6c76d9a1fa17", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setFormStatus("success");
-        setFormData({ name: "", surname: "", phone: "", email: "", topic: "", comment: "" });
-      } else {
-        setFormStatus("error");
-      }
-    } catch {
-      setFormStatus("error");
-    }
+    const subject = encodeURIComponent(`Обращение: ${formData.topic}`);
+    const body = encodeURIComponent(
+      `Имя: ${formData.name}\nФамилия: ${formData.surname}\nТелефон: ${formData.phone}\nEmail: ${formData.email}\nТема: ${formData.topic}\n\nКомментарий:\n${formData.comment}`
+    );
+    window.location.href = `mailto:support@dkuban.ru?subject=${subject}&body=${body}`;
   };
 
   const activeSlide = hoveredGuide !== null ? hoveredGuide : activeGuide;
@@ -657,18 +643,11 @@ export default function Index() {
                 </div>
                 <button
                   type="submit"
-                  disabled={formStatus === "sending"}
-                  className="w-full py-4 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="w-full py-4 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl"
                   style={{ background: "linear-gradient(135deg, #5B21B6, #7C3AED)" }}
                 >
-                  {formStatus === "sending" ? "Отправка..." : "Отправить"}
+                  Отправить
                 </button>
-                {formStatus === "success" && (
-                  <p className="text-green-400 text-sm text-center">Ваше обращение отправлено! Мы свяжемся с вами в рабочее время.</p>
-                )}
-                {formStatus === "error" && (
-                  <p className="text-red-400 text-sm text-center">Не удалось отправить. Пожалуйста, попробуйте позже или напишите на <a href="mailto:support@dkuban.ru" className="underline">support@dkuban.ru</a></p>
-                )}
                 <p className="text-gray-500 text-xs leading-relaxed">
                   Нажимая кнопку «Отправить», я даю своё согласие на обработку персональных данных в соответствии с{" "}
                   <a href="#" className="text-purple-400 hover:underline">Федеральным законом № 152-ФЗ</a>
