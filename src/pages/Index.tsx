@@ -159,6 +159,7 @@ export default function Index() {
     name: "", surname: "", phone: "", email: "", topic: "", comment: "",
   });
   const [formErrors, setFormErrors] = useState<Record<string, boolean>>({});
+  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -180,7 +181,7 @@ export default function Index() {
     setMobileMenuOpen(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errors: Record<string, boolean> = {};
     (["name", "surname", "phone", "email", "topic", "comment"] as const).forEach((field) => {
@@ -188,11 +189,24 @@ export default function Index() {
     });
     setFormErrors(errors);
     if (Object.keys(errors).length > 0) return;
-    const subject = encodeURIComponent(`Обращение: ${formData.topic}`);
-    const body = encodeURIComponent(
-      `Имя: ${formData.name}\nФамилия: ${formData.surname}\nТелефон: ${formData.phone}\nEmail: ${formData.email}\nТема: ${formData.topic}\n\nКомментарий:\n${formData.comment}`
-    );
-    window.location.href = `mailto:my.kuban@message.krasnodar.ru?subject=${subject}&body=${body}`;
+
+    setFormStatus("sending");
+    try {
+      const res = await fetch("https://functions.poehali.dev/5cfba08d-6822-4f02-8ec2-6c76d9a1fa17", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setFormStatus("success");
+        setFormData({ name: "", surname: "", phone: "", email: "", topic: "", comment: "" });
+      } else {
+        setFormStatus("error");
+      }
+    } catch {
+      setFormStatus("error");
+    }
   };
 
   const activeSlide = hoveredGuide !== null ? hoveredGuide : activeGuide;
@@ -643,11 +657,18 @@ export default function Index() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl"
+                  disabled={formStatus === "sending"}
+                  className="w-full py-4 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                   style={{ background: "linear-gradient(135deg, #5B21B6, #7C3AED)" }}
                 >
-                  Отправить
+                  {formStatus === "sending" ? "Отправка..." : "Отправить"}
                 </button>
+                {formStatus === "success" && (
+                  <p className="text-green-400 text-sm text-center">Ваше обращение отправлено! Мы свяжемся с вами в рабочее время.</p>
+                )}
+                {formStatus === "error" && (
+                  <p className="text-red-400 text-sm text-center">Не удалось отправить. Пожалуйста, попробуйте позже или напишите на <a href="mailto:support@dkuban.ru" className="underline">support@dkuban.ru</a></p>
+                )}
                 <p className="text-gray-500 text-xs leading-relaxed">
                   Нажимая кнопку «Отправить», я даю своё согласие на обработку персональных данных в соответствии с{" "}
                   <a href="#" className="text-purple-400 hover:underline">Федеральным законом № 152-ФЗ</a>
@@ -674,11 +695,11 @@ export default function Index() {
 
               <div className="space-y-4">
                 <h3 className="text-gray-300 font-semibold text-sm uppercase tracking-wider">Контакты</h3>
-                <a href="mailto:my.kuban@message.krasnodar.ru" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
+                <a href="mailto:support@dkuban.ru" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
                   <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center group-hover:bg-purple-700 transition-colors">
                     <Icon name="Mail" size={16} />
                   </div>
-                  <span className="text-sm">my.kuban@message.krasnodar.ru</span>
+                  <span className="text-sm">support@dkuban.ru</span>
                 </a>
                 <a href="tel:+78002226942" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
                   <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center group-hover:bg-purple-700 transition-colors">
